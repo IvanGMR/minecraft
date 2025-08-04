@@ -1,868 +1,416 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Cuándo abrirá Evil el Survival Eden?</title>
+    <title>Minewool Network - Servidor Minecraft con SurvivalOP y OneBlock</title>
+    <meta name="description" content="Únete a Minewool, el mejor servidor Minecraft con modalidades SurvivalOP y OneBlock. Compra artículos, obtén beneficios y diviértete con nuestra comunidad.">
+    <meta name="keywords" content="minecraft, servidor minecraft, survivalop, oneblock, minewool, tienda minecraft">
+    <meta name="author" content="Minewool Network">
+    <meta property="og:title" content="Minewool Network - Servidor Minecraft Premium">
+    <meta property="og:description" content="El mejor servidor Minecraft con SurvivalOP y OneBlock. Únete ahora.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://woolshop.buycraft.net">
+    <link rel="canonical" href="https://woolshop.buycraft.net">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "GameServer",
+      "name": "Minewool Network",
+      "gamePlatform": "Minecraft",
+      "playersOnline": "100+",
+      "serverStatus": "Online",
+      "url": "https://woolshop.buycraft.net"
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        .hero-gradient {
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
         }
-        .shake {
-            animation: shake 0.5s infinite;
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.3; }
         }
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .animate-pulse-slow {
+            animation: pulse-slow 6s infinite;
         }
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .server-ip {
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
         }
-        .rotate {
-            animation: rotate 5s linear infinite;
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 1rem;
         }
-        .pulse {
-            animation: pulse 2s infinite;
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        .typing {
-            overflow: hidden;
-            border-right: .15em solid orange;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: orange; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-purple-900 to-black min-h-screen text-white overflow-x-hidden">
-    <div class="container mx-auto px-4 py-8">
-        <!-- Encabezado -->
-        <header class="text-center mb-12">
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">
-                <span class="typing">¿CUÁNDO ABRIRÁ EVIL EL SURVIVAL EDEN?</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-yellow-300">La pregunta que todos nos hacemos... una y otra vez</p>
-        </header>
-
-        <!-- Contador de preguntas -->
-        <div class="fixed top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-full shadow-lg z-50">
-            <span id="counter">0</span> formas de preguntar
-        </div>
-
-        <!-- Botón de emergencia (falso) -->
-        <div class="fixed bottom-4 right-4">
-            <button id="emergencyBtn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg flex items-center pulse">
-                <i class="fas fa-exclamation-triangle mr-2"></i> ¡EMERGENCIA! (No tocar)
-            </button>
-        </div>
-
-        <!-- Modal de emergencia -->
-        <div id="emergencyModal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 hidden">
-            <div class="bg-gray-800 p-8 rounded-lg max-w-md mx-4">
-                <h2 class="text-2xl font-bold mb-4 text-red-500">¡ALERTA DE EMERGENCIA!</h2>
-                <p class="mb-6">Evil todavía no ha abierto el Survival Eden. Esta es una crisis mundial.</p>
-                <button id="closeModal" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
-                    Cerrar (pero el problema sigue)
+<body class="bg-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-cube text-2xl text-blue-400 mr-2"></i>
+                    <span class="font-semibold text-xl">Minewool</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-blue-400 hover:text-blue-300">Inicio</a>
+                    <a href="#" class="hover:text-blue-300">Tienda</a>
+                    <a href="#" class="hover:text-blue-300">Servidores</a>
+                    <a href="#" class="hover:text-blue-300">Soporte</a>
+                </div>
+                <button class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
+    </nav>
 
-        <!-- Sección principal -->
-        <main>
-            <!-- Formas creativas de preguntar -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="questionsContainer">
-                <!-- Las preguntas se generarán dinámicamente con JavaScript -->
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="flex justify-center mb-4">
+                <i class="fas fa-cube text-6xl text-white"></i>
             </div>
-
-            <!-- Reloj contador -->
-            <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-12 text-center">
-                <h2 class="text-3xl font-bold mb-4 text-yellow-400">TIEMPO TRANSCURRIDO DESDE LA ÚLTIMA ACTUALIZACIÓN</h2>
-                <div class="text-4xl md:text-6xl font-mono" id="countdown">
-                    <span id="days">00</span>:<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
-                </div>
-                <p class="mt-4 text-gray-400">(Y seguimos esperando...)</p>
-            </div>
-
-            <!-- Encuesta -->
-            <div class="bg-gray-800 bg-opacity-50 rounded-lg p-6 mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-center text-yellow-400">ENCUESTA: ¿CUÁNDO CREES QUE ABRIRÁ?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition cursor-pointer text-center">
-                        <div class="text-5xl mb-2">🤔</div>
-                        <h3 class="text-xl font-bold mb-2">Próximamente™</h3>
-                        <p class="text-gray-300">(Pero nadie sabe qué significa eso)</p>
-                    </div>
-                    <div class="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition cursor-pointer text-center">
-                        <div class="text-5xl mb-2">😅</div>
-                        <h3 class="text-xl font-bold mb-2">Cuando Hell se congele</h3>
-                        <p class="text-gray-300">(Que podría ser pronto, quién sabe)</p>
-                    </div>
-                    <div class="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition cursor-pointer text-center">
-                        <div class="text-5xl mb-2">🤡</div>
-                        <h3 class="text-xl font-bold mb-2">En el año 2077</h3>
-                        <p class="text-gray-300">(Justo después del Cyberpunk 2077)</p>
-                    </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-in" itemprop="name" style="text-shadow: 3px 3px 0 #000;">¡Bienvenido a Minewool Network!</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-in" itemprop="description">
+                <span class="bg-black bg-opacity-50 px-2 py-1 rounded">Servidor <strong>Minecraft Vanilla</strong>. Próximamente: <span class="text-green-300">Survival EDEN (RPG)</span>. Más de 100 jugadores activos diarios.</span>
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 fade-in">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-4 mb-6 inline-block">
+                    <p class="text-sm"><i class="fas fa-users mr-1"></i> <span id="player-count">100+</span> jugadores online</p>
+                    <p class="text-sm"><i class="fas fa-check-circle mr-1 text-green-400"></i> Servidor online</p>
                 </div>
             </div>
+            <div class="flex flex-col md:flex-row justify-center gap-4 fade-in">
+                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                    <i class="fas fa-shopping-cart mr-2"></i> Ir a la Tienda
+                </a>
+                <a href="https://discord.gg/minewool-network-562599388111831040" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                    <i class="fab fa-discord mr-2"></i> Unirse a Discord
+                </a>
+            </div>
+        </div>
+    </section>
 
-            <!-- Notificación molesta -->
-            <div id="annoyingNotification" class="fixed bottom-0 left-0 w-full bg-yellow-500 text-black p-4 flex justify-between items-center z-40 hidden">
-                <div class="flex items-center">
-                    <i class="fas fa-bell text-2xl mr-3 shake"></i>
-                    <span class="font-bold">¡RECORDATORIO IMPORTANTE! Evil todavía no ha abierto el Survival Eden.</span>
+    <!-- Features Section -->
+    <section class="py-16 bg-white" itemscope itemtype="https://schema.org/GameServer">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">¿Por qué elegir <span itemprop="name">Minewool</span>?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl shadow-lg card-hover transition duration-300 hover:shadow-xl" itemprop="featureList">
+                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white mb-4 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center" itemprop="feature">Rendimiento Óptimo</h3>
+                    <p class="text-gray-600 text-center" itemprop="description">Servidores con 99.9% uptime para la mejor experiencia de juego.</p>
                 </div>
-                <button id="closeNotification" class="bg-black text-white px-3 py-1 rounded">Cerrar (por 5 segundos)</button>
+                
+                <!-- Feature 2 -->
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 p-8 rounded-xl shadow-lg card-hover transition duration-300 hover:shadow-xl" itemprop="featureList">
+                    <div class="bg-gradient-to-r from-green-500 to-teal-600 text-white mb-4 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center" itemprop="feature">Comunidad Activa</h3>
+                    <p class="text-gray-600 text-center" itemprop="description">Más de 1,000 miembros en Discord y eventos semanales para todos los jugadores.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl shadow-lg card-hover transition duration-300 hover:shadow-xl" itemprop="featureList">
+                    <div class="bg-gradient-to-r from-purple-500 to-pink-600 text-white mb-4 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                        <i class="fas fa-gem text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-center" itemprop="feature">Contenido Exclusivo</h3>
+                    <p class="text-gray-600 text-center" itemprop="description">Items personalizados, misiones únicas y recompensas especiales para nuestros jugadores.</p>
+                </div>
             </div>
-        </main>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="text-center mt-12 text-gray-400">
-            <p class="mb-4">Esta página se actualiza cada 0.0001 segundos para preguntar lo mismo</p>
-            <div class="flex justify-center space-x-4">
-                <a href="#" class="hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-yellow-400"><i class="fab fa-discord"></i></a>
-                <a href="#" class="hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+    <!-- Popular Items Section -->
+    <section class="py-16 bg-gray-800 text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12" style="text-shadow: 2px 2px 0 #000;">Items Destacados</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-500 text-center">
+                    <i class="fas fa-sword text-4xl mx-auto mb-2"></i>
+                    <h3 class="font-bold">Espada Legendaria</h3>
+                    <p class="text-sm text-gray-300">Daño +10</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border-2 border-blue-500 text-center">
+                    <i class="fas fa-feather-alt text-4xl mx-auto mb-2"></i>
+                    <h3 class="font-bold">Elytra Mejorada</h3>
+                    <p class="text-sm text-gray-300">Durabilidad infinita</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border-2 border-green-500 text-center">
+                    <i class="fas fa-hammer text-4xl mx-auto mb-2"></i>
+                    <h3 class="font-bold">Pico de Netherite</h3>
+                    <p class="text-sm text-gray-300">Eficiencia V</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg border-2 border-red-500 text-center">
+                    <i class="fas fa-shield-alt text-4xl mx-auto mb-2"></i>
+                    <h3 class="font-bold">Totem de Inmortalidad</h3>
+                    <p class="text-sm text-gray-300">3 usos</p>
+                </div>
             </div>
-            <p class="mt-4 text-sm">© 2023 - Todos los derechos reservados (pero en serio, ¿cuándo abrirá?)</p>
-        </footer>
-    </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Cómo comprar artículos en nuestro servidor</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6 flex items-start card-hover transition duration-300">
+                    <div class="step-icon bg-blue-100 text-blue-600">
+                        <span class="font-bold text-xl">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Agrega cualquier objeto de tu interés al carrito</h3>
+                        <p class="text-gray-600">Selecciona los artículos que deseas comprar y agrégalos a tu carrito de compras.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6 flex items-start card-hover transition duration-300">
+                    <div class="step-icon bg-green-100 text-green-600">
+                        <span class="font-bold text-xl">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Asegúrate de estar en tu sesión</h3>
+                        <p class="text-gray-600">Para recibir los artículos, debes estar conectado en el servidor. Las compras pueden tardar unos minutos en llegar.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6 flex items-start card-hover transition duration-300">
+                    <div class="step-icon bg-yellow-100 text-yellow-600">
+                        <span class="font-bold text-xl">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Si no has recibido el artículo</h3>
+                        <p class="text-gray-600">No te desconectes del servidor en ningún momento y contacta con nuestro soporte via Discord.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-6 flex items-start card-hover transition duration-300">
+                    <div class="step-icon bg-purple-100 text-purple-600">
+                        <span class="font-bold text-xl">4</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Si tienes cualquier otro problema</h3>
+                        <p class="text-gray-600">Solicita un ticket en nuestro <a href="https://discord.gg/minewool-network-562599388111831040" class="text-blue-500 hover:underline">Discord</a> o contacta con: <a href="mailto:marca@minewool.com" class="text-blue-500 hover:underline">marca@minewool.com</a></p>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex items-start card-hover transition duration-300">
+                    <div class="step-icon bg-red-100 text-red-600">
+                        <span class="font-bold text-xl">5</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Problemas con reembolsos</h3>
+                        <p class="text-gray-600">Actualmente no estamos aceptando reembolsos. Gracias por tu comprensión y por apoyar nuestro servidor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Server IP Section -->
+    <section class="py-12 bg-indigo-900 text-white text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6">¡Conéctate ahora!</h2>
+            <div class="server-ip max-w-md mx-auto p-4 rounded-lg mb-6">
+                <p class="text-sm opacity-80 mb-1">IP del servidor</p>
+                <p class="text-xl font-mono bg-gray-800 p-3 rounded cursor-pointer hover:bg-gray-700 transition" onclick="copyToClipboard('play.minewool.com')">
+                    play.minewool.com
+                    <i class="fas fa-copy ml-2 text-blue-300"></i>
+                </p>
+            </div>
+            <p class="max-w-2xl mx-auto opacity-90">Versión compatible: <strong>1.8 - 1.20</strong></p>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section class="py-12 bg-gray-800 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4"><i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i> ¡No estamos afiliados con Mojang AB o Microsoft!</p>
+            <p>We are not affiliated with Mojang AB or Microsoft.</p>
+        </div>
+    </section>
+
+    <!-- Petición Oficial a EvilDarknes - Versión Catastrófica -->
+    <section class="py-16 bg-gradient-to-r from-purple-900 to-red-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto bg-black bg-opacity-40 p-8 rounded-xl border-2 border-yellow-400">
+                <i class="fas fa-newspaper text-5xl mb-6 text-yellow-300 animate-bounce"></i>
+                <h2 class="text-3xl font-bold mb-6">¡ALERTA MUNDIAL! CRISIS POR FALTA DE SURVIVAL EDEN</h2>
+                
+                <div class="text-left mb-8 bg-gray-900 bg-opacity-60 p-6 rounded-lg">
+                    <div class="bg-red-900 p-3 rounded mb-4 text-center">
+                        <i class="fas fa-exclamation-triangle mr-2"></i> ULTIMAS NOTICIAS: 2 DE CADA 3 JUGADORES CAYERON EN DEPRESIÓN
+                    </div>
+                    
+                    <p class="mb-4">Estimado Dictador... digo, Estimado EvilDarknes,</p>
+                    <p class="mb-4">La situación es CRÍTICA. Según nuestros estudios científicos (hechos en Paint):</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-blue-900 p-3 rounded">
+                            <h3 class="font-bold">📉 Estadísticas Alarmantes:</h3>
+                            <ul class="list-disc pl-5 text-sm">
+                                <li>73% de jugadores revisan Discord cada 3 segundos</li>
+                                <li>82% han soñado con el comando /eden open</li>
+                                <li>97% han llorado al ver "Próximamente"</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-900 p-3 rounded">
+                            <h3 class="font-bold">⚠️ Consecuencias Graves:</h3>
+                            <ul class="list-disc pl-5 text-sm">
+                                <li>Familias destruidas</li>
+                                <li>Exámenes reprobados</li>
+                                <li>Plantas sin regar</li>
+                                <li>Mascotas abandonadas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="text-2xl font-bold text-center text-yellow-300 my-6 animate-pulse">
+                        ¡POR EL AMOR DE NOTCH! ¿CUÁNDO ABRES EL EDEN?
+                    </p>
+
+                    <div class="bg-gray-800 p-4 rounded mb-4">
+                        <h3 class="font-bold text-red-400">📰 Noticia Relacionada:</h3>
+                        <p>"Minecrafters forman secta que adora a un bloque de hierba con la palabra 'Eden' escrita en sangre de cerdo" - El Mundo Today</p>
+                    </div>
+
+                    <p class="text-center mt-6">Atentamente,</p>
+                    <p class="text-center font-bold">La Comunidad al Borde del Colapso Nervioso</p>
+                </div>
+
+                <div class="bg-red-900 bg-opacity-60 p-4 rounded-lg border border-red-400">
+                    <i class="fas fa-reply text-2xl mb-2"></i>
+                    <h3 class="font-bold mb-2">Comunicado Oficial de EvilDarknes:</h3>
+                    <p class="text-yellow-200 italic">"Cuando los bugs dejen de aparecer como si fueran zombies en modo hardcore"</p>
+                    <p class="text-xs mt-2">*Traducción: Ni idea, sigan esperando</p>
+                </div>
+
+                <div class="mt-6 bg-black p-4 rounded border border-yellow-600">
+                    <h3 class="font-bold text-yellow-400 mb-2">📢 ¡ÚNETE A LA PROTESTA!</h3>
+                    <p>Huelga de hambre virtual hasta que abra el Eden</p>
+                    <p class="text-xs">(Comeremos mientras jugamos, pero el gesto cuenta)</p>
+                </div>
+
+                <button class="mt-8 bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105 animate-pulse">
+                    <i class="fas fa-heart-crack mr-2"></i> ¡Socorro, me está matando la espera!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 border-t-4 border-yellow-600">
+        <div class="container mx-auto px-6 mb-6">
+            <div class="flex justify-center">
+                <div class="grid grid-cols-3 md:grid-cols-5 gap-4 text-center">
+                    <div class="p-2 hover:bg-gray-800 rounded transition">
+                        <i class="fas fa-home text-2xl mx-auto"></i>
+                        <span class="text-xs mt-1 block">Inicio</span>
+                    </div>
+                    <div class="p-2 hover:bg-gray-800 rounded transition">
+                        <i class="fas fa-shopping-cart text-2xl mx-auto"></i>
+                        <span class="text-xs mt-1 block">Tienda</span>
+                    </div>
+                    <div class="p-2 hover:bg-gray-800 rounded transition">
+                        <i class="fas fa-server text-2xl mx-auto"></i>
+                        <span class="text-xs mt-1 block">Servidores</span>
+                    </div>
+                    <div class="p-2 hover:bg-gray-800 rounded transition">
+                        <i class="fas fa-book text-2xl mx-auto"></i>
+                        <span class="text-xs mt-1 block">Reglas</span>
+                    </div>
+                    <div class="p-2 hover:bg-gray-800 rounded transition">
+                        <i class="fas fa-question-circle text-2xl mx-auto"></i>
+                        <span class="text-xs mt-1 block">Soporte</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fas fa-cube text-2xl text-blue-400 mr-2"></i>
+                        <span class="font-semibold text-xl">Minewool</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">© 2023 Minewool Network. Todos los derechos reservados.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://discord.gg/minewool-network-562599388111831040" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-discord text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Preguntas creativas
-        const creativeQuestions = [
-            "¿Ya abrió el Survival Eden?",
-            "¿Podrías abrir el Survival Eden, por favor?",
-            "¿Cuál es la fecha exacta de apertura del Survival Eden?",
-            "¿Está listo ya el Survival Eden?",
-            "¿Cuánto falta para el Survival Eden?",
-            "¿Podemos tener el Survival Eden ahora?",
-            "¿Survival Eden cuando?",
-            "¿Qué falta para el Survival Eden?",
-            "¿Estás trabajando en el Survival Eden ahora mismo?",
-            "¿Puedes confirmar que el Survival Eden abrirá pronto?",
-            "¿Hay novedades sobre el Survival Eden?",
-            "¿Podrías darnos un adelanto del Survival Eden?",
-            "¿Cuál es el estado actual del Survival Eden?",
-            "¿Estás testeando el Survival Eden?",
-            "¿Qué porcentaje de completado tiene el Survival Eden?",
-            "¿Survival Eden esta semana?",
-            "¿Survival Eden este mes?",
-            "¿Survival Eden este año?",
-            "¿Survival Eden en esta década?",
-            "¿Survival Eden en este siglo?",
-            "¿Podrías darnos una fecha estimada para el Survival Eden?",
-            "¿Hay algún problema que retrase el Survival Eden?",
-            "¿Qué necesitas para terminar el Survival Eden?",
-            "¿Estás satisfecho con cómo va el Survival Eden?",
-            "¿Podrías priorizar el Survival Eden?",
-            "¿Cuándo fue la última vez que trabajaste en el Survival Eden?",
-            "¿Cuántas horas le dedicas al día al Survival Eden?",
-            "¿Estás durmiendo o trabajando en el Survival Eden?",
-            "¿Qué comes mientras trabajas en el Survival Eden?",
-            "¿Tienes un roadmap público para el Survival Eden?",
-            "¿Podrías hacer un stream trabajando en el Survival Eden?",
-            "¿Podrías confirmar si el Survival Eden existe?",
-            "¿Es el Survival Eden solo un mito?",
-            "¿El Survival Eden es vaporware?",
-            "¿Estás esperando a que termine el COVID para abrir el Survival Eden?",
-            "¿Estás esperando a que Elon Musk compre Twitter para abrir el Survival Eden?",
-            "¿Estás esperando a que salga GTA 6 para abrir el Survival Eden?",
-            "¿Estás esperando a que Half-Life 3 salga para abrir el Survival Eden?",
-            "¿Estás esperando el fin del mundo para abrir el Survival Eden?",
-            "¿Estás esperando a que te lo pidan 1000 veces para abrir el Survival Eden?",
-            "¿Podrías abrir el Survival Eden aunque sea en beta?",
-            "¿Podrías abrir el Survival Eden aunque sea en alpha?",
-            "¿Podrías abrir el Survival Eden aunque sea en pre-alpha?",
-            "¿Podrías abrir el Survival Eden aunque sea en demo?",
-            "¿Podrías abrir el Survival Eden aunque sea en early access?",
-            "¿Podrías abrir el Survival Eden aunque sea en acceso anticipado?",
-            "¿Podrías abrir el Survival Eden aunque sea en versión 0.0.1?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prueba?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo test?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo experimental?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo debug?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desarrollador?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo creativo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espectador?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aventura?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hardcore?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo pacífico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo fácil?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo normal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo difícil?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extremo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo imposible?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo sandbox?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo supervivencia?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo multijugador?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo un jugador?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo local?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo online?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo LAN?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo PvP?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo PvE?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cooperativo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo competitivo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo torneo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ranked?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo casual?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo arcade?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo clásico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo moderno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo retro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo futuro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo steampunk?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cyberpunk?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo medieval?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prehistórico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espacial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo submarino?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desierto?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo jungla?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo montaña?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ciudad?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo pueblo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aldea?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo metrópolis?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo rural?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo urbano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo suburbano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo isla?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo continente?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo planeta?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo galaxia?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo universo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo multiverso?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo realidad virtual?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo realidad aumentada?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 2D?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 3D?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 4D?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 8 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 16 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 32 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 64 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 128 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 256 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 512 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 1024 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 2048 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 4096 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 8192 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 16384 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 32768 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 65536 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 131072 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 262144 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 524288 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 1048576 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 2097152 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 4194304 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 8388608 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 16777216 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 33554432 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 67108864 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 134217728 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 268435456 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 536870912 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 1073741824 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 2147483648 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 4294967296 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 8589934592 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 17179869184 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 34359738368 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 68719476736 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 137438953472 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 274877906944 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 549755813888 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 1099511627776 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 2199023255552 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 4398046511104 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 8796093022208 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 17592186044416 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 35184372088832 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 70368744177664 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 140737488355328 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 281474976710656 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 562949953421312 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 1125899906842624 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 2251799813685248 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 4503599627370496 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 9007199254740992 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 18014398509481984 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 36028797018963968 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 72057594037927936 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 144115188075855872 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 288230376151711744 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 576460752303423488 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 1152921504606846976 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 2305843009213693952 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 4611686018427387904 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo 9223372036854775808 bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infinito bits?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cuántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo relativista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo newtoniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo einsteiniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo galileano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo copernicano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo kepleriano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ptolomeico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aristotélico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo platónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo socrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo presocrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postmoderno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo modernista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo romántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo clásico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo barroco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo renacentista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo medieval?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo antiguo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prehistórico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo futuro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo distópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo utópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo apocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postapocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo paradisíaco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infernal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo celestial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo terrenal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo subterráneo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo submarino?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aéreo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espacial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intergaláctico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interplanetario?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interestelar?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intercontinental?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo internacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo nacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo local?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo global?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo universal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo multiversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omniversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo metaversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extradimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnidimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extratemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transtemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnitemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hipertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eterno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infinito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo finito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo limitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ilimitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo restringido?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo irrestricto?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo controlado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo descontrolado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desregulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo moderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inmoderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo equilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desequilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo simétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo asimétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo proporcional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desproporcionado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo armónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inarmónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo melódico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo rítmico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cacofónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eufónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo disonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo consonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo tonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo politonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo microtonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo macrotonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo pentatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo heptatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo dodecafónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo serial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aleatorio?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo determinista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo indeterminista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo probabilista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo estadístico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cuántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo relativista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo newtoniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo einsteiniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo galileano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo copernicano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo kepleriano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ptolomeico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aristotélico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo platónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo socrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo presocrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postmoderno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo modernista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo romántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo clásico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo barroco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo renacentista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo medieval?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo antiguo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prehistórico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo futuro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo distópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo utópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo apocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postapocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo paradisíaco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infernal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo celestial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo terrenal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo subterráneo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo submarino?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aéreo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espacial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intergaláctico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interplanetario?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interestelar?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intercontinental?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo internacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo nacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo local?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo global?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo universal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo multiversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omniversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo metaversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extradimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnidimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extratemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transtemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnitemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hipertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eterno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infinito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo finito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo limitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ilimitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo restringido?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo irrestricto?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo controlado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo descontrolado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desregulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo moderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inmoderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo equilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desequilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo simétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo asimétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo proporcional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desproporcionado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo armónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inarmónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo melódico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo rítmico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cacofónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eufónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo disonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo consonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo tonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo politonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo microtonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo macrotonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo pentatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo heptatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo dodecafónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo serial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aleatorio?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo determinista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo indeterminista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo probabilista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo estadístico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cuántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo relativista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo newtoniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo einsteiniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo galileano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo copernicano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo kepleriano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ptolomeico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aristotélico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo platónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo socrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo presocrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postmoderno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo modernista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo romántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo clásico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo barroco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo renacentista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo medieval?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo antiguo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prehistórico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo futuro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo distópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo utópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo apocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postapocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo paradisíaco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infernal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo celestial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo terrenal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo subterráneo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo submarino?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aéreo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espacial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intergaláctico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interplanetario?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interestelar?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intercontinental?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo internacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo nacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo local?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo global?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo universal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo multiversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omniversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo metaversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extradimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnidimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extratemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transtemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnitemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hipertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eterno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infinito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo finito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo limitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ilimitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo restringido?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo irrestricto?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo controlado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo descontrolado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desregulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo moderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inmoderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo equilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desequilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo simétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo asimétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo proporcional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desproporcionado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo armónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inarmónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo melódico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo rítmico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cacofónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eufónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo disonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo consonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo tonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo politonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo microtonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo macrotonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo pentatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo heptatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo dodecafónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo serial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aleatorio?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo determinista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo indeterminista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo probabilista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo estadístico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cuántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo relativista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo newtoniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo einsteiniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo galileano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo copernicano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo kepleriano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ptolomeico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aristotélico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo platónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo socrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo presocrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postmoderno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo modernista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo romántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo clásico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo barroco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo renacentista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo medieval?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo antiguo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prehistórico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo futuro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo distópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo utópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo apocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postapocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo paradisíaco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infernal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo celestial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo terrenal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo subterráneo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo submarino?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aéreo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espacial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intergaláctico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interplanetario?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interestelar?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intercontinental?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo internacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo nacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo local?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo global?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo universal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo multiversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omniversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo metaversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extradimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnidimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extratemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transtemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnitemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hipertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eterno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infinito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo finito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo limitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ilimitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo restringido?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo irrestricto?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo controlado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo descontroladoo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desregulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo moderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inmoderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo equilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desequilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo simétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo asimétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo proporcional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desproporcionado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo armónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inarmónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo melódico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo rítmico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cacofónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eufónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo disonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo consonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo tonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo politonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo microtonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo macrotonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo pentatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo heptatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo dodecafónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo serial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aleatorio?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo determinista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo indeterminista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo probabilista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo estadístico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cuántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo relativista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo newtoniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo einsteiniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo galileano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo copernicano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo kepleriano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ptolomeico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aristotélico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo platónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo socrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo presocrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postmoderno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo modernista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo romántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo clásico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo barroco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo renacentista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo medieval?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo antiguo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prehistórico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo futuro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo distópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo utópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo apocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postapocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo paradisíaco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infernal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo celestial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo terrenal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo subterráneo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo submarino?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aéreo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espacial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intergaláctico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interplanetario?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interestelar?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intercontinental?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo internacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo nacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo local?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo global?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo universal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo multiversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omniversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo metaversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperversal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extradimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnidimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hiperdimensional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo extratemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo transtemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo omnitemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo hipertemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atemporal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eterno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infinito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo finito?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo limitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ilimitado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo restringido?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo irrestricto?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo controlado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo descontrolado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desregulado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo moderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inmoderado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo equilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desequilibrado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo simétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo asimétrico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo proporcional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo desproporcionado?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo armónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo inarmónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo melódico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo rítmico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cacofónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo eufónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo disonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo consonante?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo tonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo atonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo politonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo microtonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo macrotonal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo pentatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo heptatónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo dodecafónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo serial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aleatorio?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo determinista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo indeterminista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo probabilista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo estadístico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo cuántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo relativista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo newtoniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo einsteiniano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo galileano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo copernicano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo kepleriano?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo ptolomeico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aristotélico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo platónico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo socrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo presocrático?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postmoderno?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo modernista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo romántico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo clásico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo barroco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo renacentista?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo medieval?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo antiguo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo prehistórico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo futuro?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo distópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo utópico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo apocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo postapocalíptico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo paradisíaco?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo infernal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo celestial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo terrenal?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo subterráneo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo submarino?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo aéreo?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo espacial?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intergaláctico?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interplanetario?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo interestelar?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo intercontinental?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo internacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo nacional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo regional?",
-            "¿Podrías abrir el Survival Eden aunque sea en modo local?",
-            "
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fade-in animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                }, index * 200);
+            });
+
+            // Simulate player count update
+            setInterval(() => {
+                const basePlayers = 100;
+                const randomPlayers = Math.floor(Math.random() * 30);
+                document.getElementById('player-count').textContent = `${basePlayers + randomPlayers}+`;
+            }, 5000);
+
+            // Mobile menu toggle would go here
+        });
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const ipElement = document.querySelector('.server-ip p:nth-child(2)');
+                ipElement.innerHTML = `¡Copiado! <i class="fas fa-check ml-2 text-green-300"></i>`;
+                setTimeout(() => {
+                    ipElement.innerHTML = `play.minewool.com <i class="fas fa-copy ml-2 text-blue-300"></i>`;
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
